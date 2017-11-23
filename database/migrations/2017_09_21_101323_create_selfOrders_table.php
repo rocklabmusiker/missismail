@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateSelfOrdersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('selfOrders', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 255); // Название
+            $table->string('price',50); // Цена в евро + доставка по Германии
+            $table->integer('value'); // Количество
+            $table->string('color', 200)->nullable(); // Цвет
+            $table->string('size',200)->nullable(); // Размер
+            $table->text('comment')->nullable(); // Комментарий
+            $table->enum('status', ['new','in_processing', 'done', 'archive'])->default('new');
+
+            $table->integer('user_id')->unsigned()->default(1);
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('selfOrders');
+    }
+}
