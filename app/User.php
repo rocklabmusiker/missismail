@@ -18,7 +18,7 @@ class User extends Authenticatable
         'name', 'email', 'password',
         'lastname','street','homeNumber','flat',
         'postcode','city','area','country','phoneNumber',
-        'mobile', 'money','email_token',
+        'mobile', 'debt', 'money','email_token',
 
         ];
 
@@ -71,4 +71,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\SelfMemo');
     }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
+    }
+
 }

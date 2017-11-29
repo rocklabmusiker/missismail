@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile',50)->nullable(); // сотовый
             $table->integer('buyNumber')->default(0); // номер покупки
             $table->float('money',8,2)->default(0); // денежный баланс
+            $table->float('debt',8,2)->default(0); // долг баланс
             $table->boolean('showAddressForOrderSelf')->default(0); // показать адрес для покупок самому
             $table->boolean('verified')->default(0);
             $table->string('email_token')->nullable();

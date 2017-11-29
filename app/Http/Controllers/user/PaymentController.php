@@ -4,84 +4,51 @@ namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Validator;
-use Stripe\Error\Card;
-use Cartalyst\Stripe\Stripe;
-use Input;
-use Redirect;
-use Session;
-use URL;
+use Auth;
 use App\User;
+use App\HelpOrder;
+use App\SelfOrder;
+use App\Payment;
 
 class PaymentController extends Controller
 {
     public function get()
     {
     	if(view()->exists('user.payment')){
-    		return view('user.payment');
+            $user_id = Auth::user()->id;
+            $paymentLists = Payment::all()->where('user_id', $user_id);
+            
+
+    		return view('user.payment', ['paymentLists' => $paymentLists]);
     	}
     }
 
-    public function send(Request $request)
+
+
+     public function send(Request $request)
     {
-    	$validator = Validator::make($request->all(), [
-		 'card_no' => 'required',
-		 'ccExpiryMonth' => 'required',
-		 'ccExpiryYear' => 'required',
-		 'cvvNumber' => 'required',
-		 //'amount' => 'required',
-		 ]);
+    	
 
-    	$input = $request->all();
-		 if ($validator->passes()) { 
-		 $input = array_except($input,array('_token'));
-		 $stripe = Stripe::make('sk_test_UqxO4SRAdSvmtDa2dt3jDUiy');
-		 try {
-		 $token = $stripe->tokens()->create([
-		 'card' => [
-		 'number' => $request->get('card_no'),
-		 'exp_month' => $request->get('ccExpiryMonth'),
-		 'exp_year' => $request->get('ccExpiryYear'),
-		 'cvc' => $request->get('cvvNumber'),
-		 ],
-		 ]);
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $token = $_POST['stripeToken'];
+        // $amount = Auth::user()->money;
+        $amount = Auth::user()->debt;
 
-		 if (!isset($token['id'])) {
-		 return redirect()->route('payment');
-		 }
-		 
-		 $charge = $stripe->charges()->create([
-		 'card' => $token['id'],
-		 'currency' => 'EUR',
-		 'amount' => 10.49,
-		 'description' => 'Add in wallet',
-		 ]);
+        // Charge the user's card:
+        $charge = \Stripe\Charge::create(array(
+          "amount" => $amount,
+          "currency" => "eur",
+          "description" => "Example charge",
+          "source" => $token,
+        ));
 
+        $money = $charge->amount / 100;
 
-    
-     
-		     if($charge['status'] == 'succeeded') {
-		     /**
-		     * Write Here Your Database insert logic.
-		     */
-		     echo "<pre>";
-		     print_r($charge);exit();
-		     return redirect()->route('payment');
-		     } else {
-		     \Session::put('error','Money not add in wallet!!');
-		     return redirect()->route('payment');
-		     }
-		     } catch (Exception $e) {
-		     \Session::put('error',$e->getMessage());
-		     return redirect()->route('payment');
-		     } catch(\Cartalyst\Stripe\Exception\CardErrorException $e) {
-		     \Session::put('error',$e->getMessage());
-		     return redirect()->route('payment');
-		     } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e) {
-		     \Session::put('error',$e->getMessage());
-		     return redirect()->route('payment');
-		     }
-     	}
+        Payment::create([
+            'money' => $money,
+        ]);
+
+    	return back()->with('success', 'После подтверждения платежа, мы зачислем его на ваш баланс в личном кабинете!');
 
     }
 }

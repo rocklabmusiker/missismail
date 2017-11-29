@@ -67,8 +67,8 @@ Route::group(['prefix' => 'user'], function() {
 	Route::post('/myProfile/testimonials', 'user\UserMyProfileController@sendTestimonials');
 
 	// payment
-	Route::get('/payment', 'user\PaymentController@get')->name('payment');
-	Route::post('/payment', 'user\PaymentController@send');
+	Route::get('payment', 'user\PaymentController@get')->name('payment');
+	Route::post('payment/send', 'user\PaymentController@send')->name('paymentSend');
 
 	// orderWithHelp
 	Route::get('/orderWithHelp', 'user\OrderWithHelpController@get')->name('orderWithHelp');
@@ -86,15 +86,15 @@ Route::group(['prefix' => 'user'], function() {
 
 // Admin
                            
-Route::get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
-Route::post('admin', 'Admin\LoginController@login');   
+Route::get('adminDanila', 'Admin\LoginController@showLoginForm')->name('admin.login');
+Route::post('adminDanila', 'Admin\LoginController@login');   
             
 Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email'); 
 Route::get('admin-password/reset', 'Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');                    
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'adminDanila'], function() {
 
 	Route::get('/home', 'AdminController@index')->name('adminHome');
 	// testimonials

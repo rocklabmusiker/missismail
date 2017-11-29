@@ -18,52 +18,41 @@
         		<div class="panel panel-default">
 	            	<div class="panel-heading">Пополнить счёт</div> 
 						<div class="instruction">
-							<form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!!route('payment')!!}" >
-	    					{{ csrf_field() }}
-	     
-							<div class="form-row">
-								<div class="col-xs-12 form-group card required">
-									<label class="control-label">Card Number</label>
-									<input autocomplete="off" class="form-control card-number" size="20" type="text" name="card_no">
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-xs-4 form-group cvc required">
-									<label class="control-label">CVV</label>
-									<input autocomplete="off" class="form-control card-cvc" placeholder="ex. 311' size='4" type="text" name="cvvNumber">
-								</div>
-								<div class="col-xs-4 form-group expiration required">
-									<label class="control-label">Expiration</label>
-									<input class="form-control card-expiry-month" placeholder="MM" size="2" type="text" name="ccExpiryMonth">
-								</div>
-								<div class="col-xs-4 form-group expiration required">
-									<label class="control-label"> </label>
-									<input class="form-control card-expiry-year" placeholder="YYYY" size="4" type="text" name="ccExpiryYear">
-									<input class="form-control card-expiry-year" placeholder="YYYY" size="4" type="hidden" name="amount" value="300">
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-12">
-									<div class="form-control total btn btn-info">
-										Total:
-										<span class="amount">$300</span>
-									</div>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-12 form-group">
-									<button class="form-control btn btn-primary submit-button" type="submit">Pay »</button>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-12 error form-group hide">
-									<div class="alert-danger alert">
-										Please correct the errors and try again.
-									</div>
-								</div>
-							</div>
-	    				</form>	
+						<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+						
+		    				<form action="{{ route('paymentSend') }} " method="POST">
+							  
+							  <script
+							    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							    data-key="{{ env('STRIPE_PUBLIC') }}"
+							    data-amount="{{ Auth::user()->debt }}"                
+							    data-name="Missismail"
+							    data-description="Оплата"
+							    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+							    data-locale="auto"
+							    data-currency="eur"
+							    data-zip-code="false"
+							    data-email="{{ Auth::user()->email }}"
+							    data-label="Оплата картой"
+							    data-allow-remember-me="false"
+							    data-panel-label="Оплатить €">
+
+							  </script>	
+							  {{ csrf_field() }}						
+							</form>	
+						
 					</div>
+	            </div>
+	            <div class="panel panel-default">
+	            	<div class="panel-heading">История переводов</div>
+	            	<div class="instruction">
+	            		@if(isset($paymentLists))
+	            			@foreach($paymentLists as $paymentList)
+								<p>Дата: {{ $paymentList->created_at }} Сумма: {{ $paymentList->money }}</p>
+	            			@endforeach
+	            		@endif
+	            	</div>
+
 	            </div>
 			</div>
 		</div>

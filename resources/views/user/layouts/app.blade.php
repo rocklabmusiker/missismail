@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.default.min.css">
     <link href="{{ asset('assets/css/user.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -84,9 +85,7 @@
     </div>
 
     <!-- Scripts -->
-
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
     <script src="{{ asset('assets/js/bootstrap-filestyle.min.js') }}"></script>
     <script src="{{ asset('assets/js/user.js') }}"></script>
     <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
