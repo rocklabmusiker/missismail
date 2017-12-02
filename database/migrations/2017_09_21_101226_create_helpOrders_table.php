@@ -18,7 +18,8 @@ class CreateHelpOrdersTable extends Migration
             $table->string('link',255); // Ссылка на товар
             $table->string('name', 255); // Название
             $table->string('article', 255)->nullable(); // Артикул №
-            $table->string('price',50); // Цена в евро + доставка по Германии
+            $table->string('price',50); // Цена в евро 
+            $table->string('shipment',50)->nullable(); // доставка по Германии
             $table->integer('value'); // Количество
             $table->string('color', 200)->nullable(); // Цвет
             $table->string('size',200)->nullable(); // Размер

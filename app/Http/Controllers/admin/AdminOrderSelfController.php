@@ -30,7 +30,7 @@ class AdminOrderSelfController extends Controller
       public function orderSelfNew() 
     {
 
-    	$ordersNew = SelfOrder::all()->where('status', 'new');
+    	$ordersNew = SelfOrder::all()->where('status', 'new')->sortByDesc('id');
     	
         return view('admin.orderself.adminOrderSelfNew', ['ordersNew' => $ordersNew]);
     }
@@ -40,7 +40,7 @@ class AdminOrderSelfController extends Controller
      public function orderSelfInProcessing() 
     {
 
-    	$ordersInProcessing = SelfOrder::all()->where('status', 'in_processing');
+    	$ordersInProcessing = SelfOrder::all()->where('status', 'in_processing')->sortByDesc('id');
     	
         return view('admin.orderself.adminOrderSelfInProcessing', ['ordersInProcessing' => $ordersInProcessing]);
     }
@@ -50,7 +50,7 @@ class AdminOrderSelfController extends Controller
       public function orderSelfDone() 
     {
 
-    	$ordersDone = SelfOrder::all()->where('status', 'done');
+    	$ordersDone = SelfOrder::all()->where('status', 'done')->sortByDesc('id');
     	
         return view('admin.orderself.adminOrderSelfDone', ['ordersDone' => $ordersDone]);
     }
@@ -60,7 +60,7 @@ class AdminOrderSelfController extends Controller
       public function orderSelfArchive() 
     {
 
-        $ordersArchive = SelfOrder::all()->where('status', 'archive');
+        $ordersArchive = SelfOrder::all()->where('status', 'archive')->sortByDesc('id');
         
         return view('admin.orderself.adminOrderSelfArchive', ['ordersArchive' => $ordersArchive]);
     }

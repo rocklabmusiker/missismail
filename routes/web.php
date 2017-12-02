@@ -54,6 +54,14 @@ Route::group(['middleware' => 'web'], function() {
 // User menu
 Route::group(['prefix' => 'user'], function() {
 
+	// userindex showAllorderWithHelp
+	Route::get('/allOrderHelp', 'user\ShowAllOrderWithHelpController@get')->name('showAllOrderWithHelp');
+	Route::delete('/allOrderHelp/{orderHelpId}', 'user\ShowAllOrderWithHelpController@delete')->name('OrderWithHelpDelete');
+
+	// userindex showAllorderWithHelp
+	Route::get('/allSelfOrder', 'user\ShowAllOrderSelfController@get')->name('showAllOrderSelf');
+
+
 	// myProfile
 	Route::get('/myProfile', 'user\UserMyProfileController@get')->name('userMyProfile');
 
@@ -86,15 +94,15 @@ Route::group(['prefix' => 'user'], function() {
 
 // Admin
                            
-Route::get('adminDanila', 'Admin\LoginController@showLoginForm')->name('admin.login');
-Route::post('adminDanila', 'Admin\LoginController@login');   
+Route::get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
+Route::post('admin', 'Admin\LoginController@login');   
             
 Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email'); 
 Route::get('admin-password/reset', 'Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');                    
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
-Route::group(['prefix' => 'adminDanila'], function() {
+Route::group(['prefix' => 'admin'], function() {
 
 	Route::get('/home', 'AdminController@index')->name('adminHome');
 	// testimonials

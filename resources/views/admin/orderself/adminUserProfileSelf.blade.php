@@ -88,7 +88,7 @@
 			                        </tr>
 			                        <tr>
 			                        	<th style="width: 30%;">Цена</th>
-			                        	<td>{{ $status->price }}</td>
+			                        	<td>{{ $status->price }} €</td>
 			                        </tr>
 			                        <tr>
 			                        	<th style="width: 30%;">Количество</th>

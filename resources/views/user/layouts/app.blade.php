@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.default.min.css">
     <link href="{{ asset('assets/css/user.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     
 </head>
 <body>
@@ -85,6 +86,9 @@
     </div>
 
     <!-- Scripts -->
+    @if( ! Request::is('user/payment')) ? '<script src="{{ asset('js/app.js') }}"></script>' : '')
+    @endif
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
     <script src="{{ asset('assets/js/bootstrap-filestyle.min.js') }}"></script>
     <script src="{{ asset('assets/js/user.js') }}"></script>
@@ -111,6 +115,25 @@
             alertify.error('{{ session('error') }}');
         </script>
     @endif
+
+    <script>
+        $('#allHelpOrder_content').find('.allHelpOrder_top-botton').click(function(){
+            $(this).next().slideToggle();
+            $(".allHelpOrder_acc").not($(this).next()).slideUp();
+             
+        });
+    </script>
+
+   <script>
+        function OrderWithHelpDelete() {
+            var result = confirm('Удалить заказ?');
+            if(result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+   </script>
 
  
  

@@ -16,21 +16,23 @@
         <div class="col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">Личный кабинет</div> 
-                <table class="table table-bordered table-hover table-responsive">
+                <table class="table table-bordered table-hover table-responsive user_table">
                     <tr>
-                        <th style="width: 20%;">Ваш логин</th>
-                        <th style="width: 20%;">№ кабинета</th>
-                        <th style="width: 20%;">Баланс (€)</th>
-                        <th style="width: 20%;">Покупок с нашей помощью</th>
-                        <th style="width: 20%;">Самостоятельных покупок</th>
+                        <th style="width: 19%;">Ваш логин</th>
+                        <th style="width: 12%;">№ кабинета</th>
+                        <th style="width: 12%;">Баланс (€)</th>
+                        <th style="width: 19%;">Покупка с нашей помощью</th>
+                        <th style="width: 19%;">Самостоятельная покупка</th>
+                        <th style="width: 19%;">Сообщения</th>
                     </tr>
                     <tr>
                         @if(isset($user))     
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->money }}€</td>
-                            <td>{{ $orderHelpCount }}</td> 
-                            <td>{{ $orderSelfCount }}</td>  
+                            <td><a href="{{ route('showAllOrderWithHelp') }}"><span>{{ $orderHelpCount }}</span></a></td> 
+                            <td><a href="{{ route('showAllOrderSelf') }}"><span>{{ $orderSelfCount }}</span></a></td>
+                            <td><a href="#"><span>0</span></a></td>  
                         @endif
                     </tr>
                 </table>

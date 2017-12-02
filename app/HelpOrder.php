@@ -10,7 +10,7 @@ class HelpOrder extends Model
 
 
     protected $fillable = [
-    	'link', 'name', 'article', 'price',
+    	'link', 'name', 'article', 'price', 'shipment',
     	'value', 'color', 'size', 'comment',
 
     ];

@@ -25,7 +25,7 @@
 					  	<input type="text" class="form-control" name="link" required>
 					  </div>
 					  <div class="form-group">
-					  	<label for="name">Название <span>*</span></label>
+					  	<label for="name">Наименование <span>*</span></label>
 					    <input type="text" class="form-control" name="name" required>
 					  </div>
 					  <div class="form-group">
@@ -33,9 +33,13 @@
 					  	<input type="text" class="form-control" name="article">
 					  </div>
 					  <div class="form-group">
-						<label for="price">Цена в евро + доставка по Германии <span>*</span></label>
+						<label for="price">Цена в евро за одну единицу товара<span>*</span></label>
 					  	<input type="text" class="form-control" name="price" required>
-					  </div>
+					  </div> 
+					  <div class="form-group">
+						<label for="shipment">Доставка по Германии <span>*</span></label>
+					  	<input type="text" class="form-control" name="shipment" required>
+					  </div> 
 					  <div class="form-group">
 					  	<label for="value">Количество <span>*</span></label>
 					  	<input type="number" class="form-control" name="value" required>

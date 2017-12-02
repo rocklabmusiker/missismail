@@ -1,3 +1,20 @@
+.pagination > .active > span {
+	background-color: #4b9001;
+	border-color: #4b9001;
+	-webkit-transition: all .4s ease;
+	   -moz-transition: all .4s ease;
+	    -ms-transition: all .4s ease;
+	     -o-transition: all .4s ease;
+	        transition: all .4s ease;
+}
+
+.pagination > .active:hover span {
+	background-color: #ea410e;
+	border-color: #ea410e;
+}
+
+
+
 
 /* accordion */
 .adminUserProfile_acc { display:none; }

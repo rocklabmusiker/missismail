@@ -14,11 +14,11 @@
 @section('content')
 	<div class="container">
     	<div class="row">
-        	<div class="col-md-12 instruction profil">
+        	<div class="col-md-12 stripe profil">
         		<div class="panel panel-default">
 	            	<div class="panel-heading">Пополнить счёт</div> 
-						<div class="instruction">
-						<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+						<div class="stripe_payment">
+						
 						
 		    				<form action="{{ route('paymentSend') }} " method="POST">
 							  
@@ -45,14 +45,16 @@
 	            </div>
 	            <div class="panel panel-default">
 	            	<div class="panel-heading">История переводов</div>
-	            	<div class="instruction">
+	            	<div class="stripe_history">
 	            		@if(isset($paymentLists))
 	            			@foreach($paymentLists as $paymentList)
-								<p>Дата: {{ $paymentList->created_at }} Сумма: {{ $paymentList->money }}</p>
+								<p>{{ date('d M. Y', strtotime($paymentList->created_at)) }} | Зачисление на сумму: {{ $paymentList->money }}€ <span class="{{ ($paymentList->status == 'not received') ? 'stripe_history_red' : 'stripe_history_green' }}">{{ ($paymentList->status == 'not received') ? 'Не подтверждён' : 'Подтверждён'}}</span></p>
 	            			@endforeach
+	            			
+	            		{!! $paymentLists->render() !!}
 	            		@endif
 	            	</div>
-
+					
 	            </div>
 			</div>
 		</div>

@@ -45,6 +45,7 @@ class OrderWithHelpController extends Controller
      				'name' => $request->name,
      				'article' => $request->article,
      				'price' => $request->price,
+            'shipment' => $request->shipment,
      				'value' => $request->value,
      				'color' => $request->color,
      				'size' => $request->size,
@@ -57,6 +58,7 @@ class OrderWithHelpController extends Controller
           $name = $request->name;
           $article = $request->article;
           $price = $request->price;
+          $shipment = $request->shipment;
           $value = $request->value;
           $color = $request->color;
           $size = $request->size;
@@ -65,7 +67,7 @@ class OrderWithHelpController extends Controller
          //dd($id);
 
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new EmailOrderWithHelp(
-          $user_email, $link, $name, $article, $price, $value, $color, $size, $comment));
+          $user_email, $link, $name, $article, $price, $shipment, $value, $color, $size, $comment));
 
    			return back()->with('success', 'Ваш заказ отправлен на обработку!');
    		}

@@ -30,7 +30,7 @@ class AdminOrderWithHelpController extends Controller
      public function orderWithHelpNew() 
     {
 
-    	$ordersNew = HelpOrder::all()->where('status', 'new');
+    	$ordersNew = HelpOrder::all()->where('status', 'new')->sortByDesc('id');
     	
         return view('admin.orderwithhelp.adminOrderWithHelpNew', ['ordersNew' => $ordersNew]);
     }
@@ -40,7 +40,7 @@ class AdminOrderWithHelpController extends Controller
      public function orderWithHelpInProcessing() 
     {
 
-    	$ordersInProcessing = HelpOrder::all()->where('status', 'in_processing');
+    	$ordersInProcessing = HelpOrder::all()->where('status', 'in_processing')->sortByDesc('id');
     	
         return view('admin.orderwithhelp.adminOrderWithHelpInProcessing', ['ordersInProcessing' => $ordersInProcessing]);
     }
@@ -50,7 +50,7 @@ class AdminOrderWithHelpController extends Controller
       public function orderWithHelpDone() 
     {
 
-    	$ordersDone = HelpOrder::all()->where('status', 'done');
+    	$ordersDone = HelpOrder::all()->where('status', 'done')->sortByDesc('id');
     	
         return view('admin.orderwithhelp.adminOrderWithHelpDone', ['ordersDone' => $ordersDone]);
     }
@@ -60,7 +60,7 @@ class AdminOrderWithHelpController extends Controller
       public function orderWithHelpArchive() 
     {
 
-        $ordersArchive = HelpOrder::all()->where('status', 'archive');
+        $ordersArchive = HelpOrder::all()->where('status', 'archive')->sortByDesc('id');
         
         return view('admin.orderwithhelp.adminOrderWithHelpArchive', ['ordersArchive' => $ordersArchive]);
     }

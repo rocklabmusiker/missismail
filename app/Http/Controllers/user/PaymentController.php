@@ -16,7 +16,7 @@ class PaymentController extends Controller
     {
     	if(view()->exists('user.payment')){
             $user_id = Auth::user()->id;
-            $paymentLists = Payment::all()->where('user_id', $user_id);
+            $paymentLists = Payment::orderBy('id', 'desc')->where('user_id', $user_id)->paginate(10);
             
 
     		return view('user.payment', ['paymentLists' => $paymentLists]);
@@ -34,21 +34,30 @@ class PaymentController extends Controller
         // $amount = Auth::user()->money;
         $amount = Auth::user()->debt;
 
-        // Charge the user's card:
-        $charge = \Stripe\Charge::create(array(
-          "amount" => $amount,
-          "currency" => "eur",
-          "description" => "Example charge",
-          "source" => $token,
-        ));
+        try {
+        
+            // Charge the user's card:
+            $charge = \Stripe\Charge::create(array(
+              "amount" => $amount,
+              "currency" => "eur",
+              "description" => "Example charge",
+              "source" => $token,
+            ));
 
-        $money = $charge->amount / 100;
+            $money = $charge->amount / 100;
+            $user_id = Auth::user()->id;
 
-        Payment::create([
-            'money' => $money,
-        ]);
+            Payment::create([
+                'money' => $money,
+                'user_id' => $user_id,
+            ]);
 
-    	return back()->with('success', 'После подтверждения платежа, мы зачислем его на ваш баланс в личном кабинете!');
+            return back()->with('success', 'После подтверждения платежа, мы зачислем его на ваш баланс в личном кабинете!');
+        } catch(\Stripe\Error\Base $e) {
+            return redirect()->back()->withError($e)->send();
+        }
+
+        
 
     }
 }

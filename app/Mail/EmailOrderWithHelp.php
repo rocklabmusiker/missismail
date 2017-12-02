@@ -22,18 +22,20 @@ class EmailOrderWithHelp extends Mailable
         protected $name;
         protected $article;
         protected $price;
+        protected $shipment;
         protected $value;
         protected $color;
         protected $size;
         protected $comment;
 
-    public function __construct($user_email, $link, $name, $article, $price, $value, $color, $size, $comment)
+    public function __construct($user_email, $link, $name, $article, $price, $shipment, $value, $color, $size, $comment)
     {
         $this->user_email = $user_email;
         $this->link = $link;
         $this->name = $name;
         $this->article = $article;
         $this->price = $price;
+        $this->shipment = $shipment;
         $this->value = $value;
         $this->color = $color;
         $this->size = $size;
@@ -55,6 +57,7 @@ class EmailOrderWithHelp extends Mailable
             'name' => $this->name,
             'article' => $this->article,
             'price' => $this->price,
+            'shipment' => $this->shipment,
             'value' => $this->value,
             'color' => $this->color,
             'size' => $this->size,

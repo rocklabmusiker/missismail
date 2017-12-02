@@ -48,7 +48,41 @@
 	        justify-content: space-between;
 }
 
+
+
+
+.pagination > .active > span {
+	background-color: #4b9001;
+	border-color: #4b9001;
+	-webkit-transition: all .4s ease;
+	   -moz-transition: all .4s ease;
+	    -ms-transition: all .4s ease;
+	     -o-transition: all .4s ease;
+	        transition: all .4s ease;
+}
+
+.pagination > .active:hover span {
+	background-color: #ea410e;
+	border-color: #ea410e;
+}
+
+
 /*user index*/
+
+.user_table td a {
+	color: #636b6f;
+	text-decoration: none;
+}
+
+.user_table td span {
+	font-size: 18px;
+	color: #4B9001;
+}
+
+
+
+
+
 .user_support-contact {
 	margin-top: 20px;
 }
@@ -234,34 +268,113 @@
 
 
 /**
- * The CSS shown here will not be introduced in the Quickstart guide, but shows
- * how you can use CSS to style your Element's container.
+ *Stripe
  */
-/* .StripeElement {
-	background-color: white;
-	padding: 10px 12px;
-	border-radius: 4px;
-	border: 1px solid #c1c1c1;
-	box-shadow: 0 1px 3px 0 #e6ebf1;
-	-webkit-transition: box-shadow 150ms ease;
-	transition: box-shadow 150ms ease;
-	max-width: 500px;
-	width: 100%;
+.stripe {
+	padding: 15px;
 }
 
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
+.stripe_payment {
+	padding: 50px 15px;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
 }
 
-.StripeElement--invalid {
-  border-color: #fa755a;
+ .stripe-button-el {
+ 	height: 150px;
+ 	max-width: 150px;
+ 	width: 100%;
+ }
+
+.stripe_payment .stripe-button-el span {
+    display: block;
+    position: relative;
+    padding: 0 12px;
+    height: 150px;
+    line-height: 150px;
 }
 
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+
+.stripe_history {
+	padding: 15px;
+	border: 1px solid #ddd;
 }
 
-.form-row {
-    padding: 30px;
+.stripe_history p {
+	padding: 5px 10px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+
+
 }
- */
+
+.stripe_history p span {
+	float: right;
+	font-weight: bold;
+}
+
+.stripe_history_red {
+	color: red;
+}
+
+.stripe_history_green {
+	color: green;
+}
+
+
+.stripe_history .pagination {
+    padding-left: 0;
+    margin: 22px auto;
+    border-radius: 4px;
+}  
+
+
+/*  userShowOrderWithHelp */
+.allHelpOrder_acc {
+	display: none;
+}
+
+.allHelpOrder_content {
+	padding: 15px;
+}
+
+.allHelpOrder_content li {
+	list-style: none;
+	margin: 15px 0;
+}
+
+.allHelpOrder_top-botton {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+	padding: 0 15px;
+}
+
+.allHelpOrder_top-botton h5 {
+	font-size: 18px;
+}
+
+.allHelpOrder_status {
+	float: right;
+	color: #4b9001;
+}
+
+.allHelpOrder_status span {
+	color: #ea410e;
+}
+
+
+.allHelpOrder_text {
+	padding: 15px;
+}
+
+.allHelpOrder_text p {
+	font-size: 16px;
+}
+
+.allHelpOrder_text p span {
+	font-weight: bold;
+}
