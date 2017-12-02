@@ -17,7 +17,8 @@ class CreateAdminMailsTable extends Migration
             $table->increments('id');
             $table->string('theme', 255);
             $table->text('text');
-
+            $table->enum('status', ['new', 'old'])->default('new');
+            
             $table->integer('user_id')->unsigned()->default(1);
             $table->foreign('user_id')->references('id')->on('users');
 

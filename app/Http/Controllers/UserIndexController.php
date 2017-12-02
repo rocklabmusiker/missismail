@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\UserMail;
+use App\AdminMail;
 use Auth;
 use Mail;
 use App\Mail\EmailUserSupport;
@@ -38,8 +39,9 @@ class UserIndexController extends Controller
 
         $orderHelpCount = HelpOrder::where('user_id', $user_id)->count();
         $orderSelfCount = SelfOrder::where('user_id', $user_id)->count();
+        $adminEmails = AdminMail::where('user_id', $user_id)->where('status', 'new')->count();
 
-        return view('user.userIndex', ['user' => $user, 'orderHelpCount' => $orderHelpCount, 'orderSelfCount' => $orderSelfCount]);
+        return view('user.userIndex', ['user' => $user, 'orderHelpCount' => $orderHelpCount, 'orderSelfCount' => $orderSelfCount, 'adminEmails' => $adminEmails]);
     }
 
 

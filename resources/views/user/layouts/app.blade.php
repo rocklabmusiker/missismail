@@ -86,7 +86,10 @@
     </div>
 
     <!-- Scripts -->
-    @if( ! Request::is('user/payment')) ? '<script src="{{ asset('js/app.js') }}"></script>' : '')
+    @if( ! Request::is('user/payment'))
+        <script src='{{ asset("js/app.js")}}'></script>
+    @else
+        ''
     @endif
     
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
@@ -134,6 +137,50 @@
             }
         }
    </script>
+    <script>
+        $('#allSelfOrder_content').find('.allSelfOrder_top-botton').click(function(){
+            $(this).next().slideToggle();
+            $(".allSelfOrder_acc").not($(this).next()).slideUp();
+             
+        });
+    </script>
+    <script>
+        function OrderSelfDelete() {
+            var result = confirm('Удалить заказ?');
+            if(result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+   </script>
+
+   <script>
+        $('#adminEmails_content').find('.adminEmails_top-botton').click(function(){
+            $(this).next().slideToggle();
+            $(".adminEmails_acc").not($(this).next()).slideUp();
+             
+        });
+    </script>
+
+     <script>
+        function deleteAdminEmail() {
+            var result = confirm('Удалить сообщение?');
+            if(result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+   </script>
+
+    <script>
+        $('#userEmails_content').find('.userEmails_top-botton').click(function(){
+            $(this).next().slideToggle();
+            $(".userEmails_acc").not($(this).next()).slideUp();
+             
+        });
+    </script>
 
  
  

@@ -60,6 +60,17 @@ Route::group(['prefix' => 'user'], function() {
 
 	// userindex showAllorderWithHelp
 	Route::get('/allSelfOrder', 'user\ShowAllOrderSelfController@get')->name('showAllOrderSelf');
+	Route::delete('/allSelfOrder/{orderSelfId}', 'user\ShowAllOrderSelfController@delete')->name('OrderSelfDelete');
+
+	// userIndex emails
+	// adminEmails
+	Route::get('/adminEmails', 'user\AllEmailsController@adminEmails')->name('adminEmails');
+	Route::put('/adminEmailUpdate/{adminEmail_id}', 'user\AllEmailsController@adminEmailUpdate')->name('adminEmailUpdate');
+	Route::delete('/adminEmailDelete/{adminEmail_id}', 'user\AllEmailsController@adminEmailDelete')->name('adminEmailDelete');
+
+	// userEmails
+	Route::get('/userEmails', 'user\AllEmailsController@userEmails')->name('userEmails');
+	Route::delete('/userEmailDelete/{userEmail_id}', 'user\AllEmailsController@userEmailDelete')->name('userEmailDelete');
 
 
 	// myProfile

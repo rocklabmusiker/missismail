@@ -30,9 +30,9 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->money }}€</td>
-                            <td><a href="{{ route('showAllOrderWithHelp') }}"><span>{{ $orderHelpCount }}</span></a></td> 
-                            <td><a href="{{ route('showAllOrderSelf') }}"><span>{{ $orderSelfCount }}</span></a></td>
-                            <td><a href="#"><span>0</span></a></td>  
+                            <td><a href="{{ route('showAllOrderWithHelp') }}"><span>Количество: {{ $orderHelpCount }}</span></a></td> 
+                            <td><a href="{{ route('showAllOrderSelf') }}"><span>Количество: {{ $orderSelfCount }}</span></a></td>
+                            <td><a href="{{ route('adminEmails') }}"><span>Новые: <span class="{{ ($adminEmails > 0) ? 'adminEmailsNew' : '' }}">{{ $adminEmails }}</span></span></a></td>  
                         @endif
                     </tr>
                 </table>

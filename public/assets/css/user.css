@@ -75,8 +75,17 @@
 }
 
 .user_table td span {
-	font-size: 18px;
-	color: #4B9001;
+	font-size: 16px;
+	-webkit-transition: all .4s ease;
+	   -moz-transition: all .4s ease;
+	    -ms-transition: all .4s ease;
+	     -o-transition: all .4s ease;
+	        transition: all .4s ease;
+	
+}
+
+.user_table td span:hover {
+	color: #4B9001; 
 }
 
 
@@ -354,7 +363,7 @@
 }
 
 .allHelpOrder_top-botton h5 {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .allHelpOrder_status {
@@ -378,3 +387,143 @@
 .allHelpOrder_text p span {
 	font-weight: bold;
 }
+
+/*  userShowOrderSelf */
+.allSelfOrder_acc {
+	display: none;
+}
+
+.allSelfOrder_content {
+	padding: 15px;
+}
+
+.allSelfOrder_content li {
+	list-style: none;
+	margin: 15px 0;
+}
+
+.allSelfOrder_top-botton {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+	padding: 0 15px;
+}
+
+.allSelfOrder_top-botton h5 {
+	font-size: 16px;
+}
+
+.allSelfOrder_status {
+	float: right;
+	color: #4b9001;
+}
+
+.allSelfOrder_status span {
+	color: #ea410e;
+}
+
+
+.allSelfOrder_text {
+	padding: 15px;
+}
+
+.allSelfOrder_text p {
+	font-size: 16px;
+}
+
+.allSelfOrder_text p span {
+	font-weight: bold;
+}
+
+/*  adminEmails */
+
+
+.adminEmails_acc {
+	display: none;
+}
+
+.adminEmails_content {
+	padding: 15px;
+}
+
+.adminEmails_content li {
+	list-style: none;
+	margin: 15px 0;
+}
+
+.adminEmails_top-botton {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+	padding: 0 15px;
+}
+
+.adminEmails_top-botton h5 {
+	font-size: 16px;
+}
+
+.adminEmails_text {
+	padding: 15px;
+}
+
+.adminEmails_text p {
+	font-size: 16px;
+	
+}
+
+
+.adminEmailsNew {
+	color: #ea410e;
+	font-weight: bold;
+}
+
+.table span.adminEmailsNew:hover {
+	color: #ea410e;
+	font-weight: bold;
+}
+
+.adminEmailsStatus {
+	float: right;
+	color: #ea410e;
+	font-weight: bold;
+}
+
+
+/*  userEmails */
+
+
+.userEmails_acc {
+	display: none;
+}
+
+.userEmails_content {
+	padding: 15px;
+}
+
+.userEmails_content li {
+	list-style: none;
+	margin: 15px 0;
+}
+
+.userEmails_top-botton {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+	padding: 0 15px;
+}
+
+.userEmails_top-botton h5 {
+	font-size: 16px;
+}
+
+.userEmails_text {
+	padding: 15px;
+}
+
+.userEmails_text p {
+	font-size: 16px;
+}
+
