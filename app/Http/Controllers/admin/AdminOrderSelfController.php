@@ -83,7 +83,7 @@ class AdminOrderSelfController extends Controller
         // получаем список писем отправеных админом клиенту
         $adminMails = OrderSelfAdminMail::where('user_id', $id)->get()->sortByDesc('id');
 
-        $memo = SelfMemo::where('user_id', $id)->first();
+        $memo = SelfMemo::orderBy('id', 'desc')->where('user_id', $id)->where('order_id', $order)->first();
 
 
 
@@ -105,8 +105,27 @@ class AdminOrderSelfController extends Controller
             $status = SelfOrder::where('user_id', $id)->where('id', $order);
             $status->delete();
 
+            $memo = SelfMemo::where('user_id', $id)->where('order_id',$order);
+            $memo->delete();
+
         
             return redirect()->route('adminHome');
+          
+        }
+
+    }
+
+     public function userProfilOrderSelfUpdateDebt(Request $request, $id, $order) 
+    {
+        if($request->isMethod('put')) {
+           
+            $status = User::where('id', $id);
+            
+            $status->update([
+                    'debt' => $request->debt,
+            ]);
+
+            return back();
           
         }
 
@@ -166,12 +185,15 @@ class AdminOrderSelfController extends Controller
     {
         if($request->isMethod('put')){
 
+            $user_id = User::find($id)->id;
             $rules = ['text' => 'required'];
             $messages = ['text.required' => 'Поле заметки должно быть заполнено!'];
             $this->validate($request, $rules, $messages);
 
             SelfMemo::create([
                 'text' => $request->text,
+                'user_id' => $user_id,
+                'order_id' => $order,
 
             ]);
 
@@ -185,7 +207,7 @@ class AdminOrderSelfController extends Controller
     public function userProfilOrderSelfDeleteMemo(Request $request, $id, $order)
     {
         if($request->isMethod('delete')) {
-            $memo = SelfMemo::where('user_id', $id)->first();
+            $memo = SelfMemo::where('user_id', $id)->where('order_id',$order)->first();
             $memo->delete();
 
             return redirect()->route('adminUserProfilOrderSelf',['user_id' => $id, 'order_id' => $order]);

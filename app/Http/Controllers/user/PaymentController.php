@@ -54,7 +54,7 @@ class PaymentController extends Controller
 
             return back()->with('success', 'После подтверждения платежа, мы зачислем его на ваш баланс в личном кабинете!');
         } catch(\Stripe\Error\Base $e) {
-            return redirect()->back()->withError($e)->send();
+            return redirect()->back()->withError($e)->with('error', 'У вас нет задолженности. Если есть вопросы, обратитесь в службу поддержки.')->send();
         }
 
         

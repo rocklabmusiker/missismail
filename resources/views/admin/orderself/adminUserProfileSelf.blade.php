@@ -126,6 +126,22 @@
 		                        	</td>
 		                        </tr>
 		                        <tr>
+		                        	<th style="width: 30%;">Задолженость за заказы и услуги <br> (!!! ВАЖНО !!! 2000 = 20€)	</th>
+		                        	<td>{{ $user->debt / 100 }} €</td>
+		                        	<td>
+		                        		<form class="form-inline" method="post" action="{{ route('adminUserProfilOrderSelfUpdateDebt', ['id' => $user->id, 'id_order' => $id_order->id]) }}">
+		                        			{{ csrf_field() }}
+				 							{{ method_field('PUT') }}
+				 							<div class="form-group">
+											  	<input type="text" name="debt" class="form-control">
+											</div>
+											<div class="form-group">
+											    <button type="submit" class="btn btn-default" onclick="return updateDebt();">Обновить задолженность</button>
+											</div>
+		                        		</form>
+		                        	</td>
+		                        </tr>
+		                        <tr>
 		                        	<th style="width: 30%;">Денег на счету</th>
 		                        	<td>{{ $user->money }} €</td>
 		                        	<td>

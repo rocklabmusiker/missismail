@@ -134,8 +134,13 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::delete('/userProfilOrderWithHelp/DeleteOrder/{id}/{order}', 'admin\AdminOrderWithHelpController@userProfilOrderWithHelpDeleteOrder')->name('adminUserProfilOrderWithHelpDeleteOrder');
 	// открыть доступ на покупки самому
 	Route::put('/userProfilOrderWithHelp/AccessBuySelf/{id}/{order}', 'admin\AdminOrderWithHelpController@userProfilOrderWithHelpAccessBuySelf')->name('adminUserProfilOrderWithHelpAccessBuySelf');
+
+	// update debt
+	Route::put('/userProfilOrderWithHelp/UpdateDebt/{id}/{order}', 'admin\AdminOrderWithHelpController@userProfilOrderWithHelpUpdateDebt')->name('adminUserProfilOrderWithHelpUpdateDebt');
+
 	// update money
 	Route::put('/userProfilOrderWithHelp/UpdateMoney/{id}/{order}', 'admin\AdminOrderWithHelpController@userProfilOrderWithHelpUpdateMoney')->name('adminUserProfilOrderWithHelpUpdateMoney');
+
 	// update status
 	Route::put('/userProfilOrderWithHelp/UpdateStatus/{id}/{order}', 'admin\AdminOrderWithHelpController@userProfilOrderWithHelpUpdateStatus')->name('adminUserProfilOrderWithHelpUpdateStatus');
 	// memo
@@ -164,6 +169,10 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::delete('/userProfilOrderSelf/DeleteOrder/{id}/{order}', 'admin\AdminOrderSelfController@userProfilOrderSelfDeleteOrder')->name('adminUserProfilOrderSelfDeleteOrder');
 	// открыть доступ на покупки самому
 	Route::put('/userProfilOrderSelf/AccessBuySelf/{id}/{order}', 'admin\AdminOrderSelfController@userProfilOrderSelfAccessBuySelf')->name('adminUserProfilOrderSelfAccessBuySelf');
+
+	// update money
+	Route::put('/userProfilOrderSelf/UpdateDebt/{id}/{order}', 'admin\AdminOrderSelfController@userProfilOrderSelfUpdateDebt')->name('adminUserProfilOrderSelfUpdateDebt');
+
 	// update money
 	Route::put('/userProfilOrderSelf/UpdateMoney/{id}/{order}', 'admin\AdminOrderSelfController@userProfilOrderSelfUpdateMoney')->name('adminUserProfilOrderSelfUpdateMoney');
 	// update status

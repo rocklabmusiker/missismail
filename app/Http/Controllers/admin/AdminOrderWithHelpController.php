@@ -83,7 +83,7 @@ class AdminOrderWithHelpController extends Controller
         // получаем список писем отправеных админом клиенту
         $adminMails = AdminMail::where('user_id', $id)->get()->sortByDesc('id');
 
-        $memo = Memo::where('user_id', $id)->first();
+        $memo = Memo::orderBy('id', 'desc')->where('user_id', $id)->where('order_id', $order)->first();
 
 
 
@@ -105,12 +105,32 @@ class AdminOrderWithHelpController extends Controller
             $status = HelpOrder::where('user_id', $id)->where('id', $order);
             $status->delete();
 
+            $memo = Memo::where('user_id', $id)->where('order_id',$order);
+            $memo->delete();
+
         
             return redirect()->route('adminHome');
           
         }
 
     }
+
+    public function userProfilOrderWithHelpUpdateDebt(Request $request, $id, $order) 
+    {
+        if($request->isMethod('put')) {
+           
+            $status = User::where('id', $id);
+            
+            $status->update([
+                    'debt' => $request->debt,
+            ]);
+
+            return back();
+          
+        }
+
+    }
+
 
      public function userProfilOrderWithHelpUpdateMoney(Request $request, $id, $order) 
     {
@@ -127,6 +147,8 @@ class AdminOrderWithHelpController extends Controller
         }
 
     }
+
+
 
 
      public function userProfilOrderWithHelpAccessBuySelf(Request $request, $id, $order) 
@@ -166,12 +188,16 @@ class AdminOrderWithHelpController extends Controller
     {
         if($request->isMethod('put')){
 
+            $user_id = User::find($id)->id;
             $rules = ['text' => 'required'];
             $messages = ['text.required' => 'Поле заметки должно быть заполнено!'];
             $this->validate($request, $rules, $messages);
 
+            
             Memo::create([
                 'text' => $request->text,
+                'user_id' => $user_id,
+                'order_id' => $order,
 
             ]);
 
@@ -185,7 +211,7 @@ class AdminOrderWithHelpController extends Controller
     public function userProfilOrderWithHelpDeleteMemo(Request $request, $id, $order)
     {
         if($request->isMethod('delete')) {
-            $memo = Memo::where('user_id', $id)->first();
+            $memo = Memo::where('user_id', $id)->where('order_id',$order)->first();
             $memo->delete();
 
             return redirect()->route('adminUserProfilOrderWithHelp',['user_id' => $id, 'order_id' => $order]);

@@ -97,6 +97,15 @@
            return false;
           }
         }
+        function updateDebt() {
+          var result = confirm("Хотите обновить задолженость клиента?");
+          if (result) {
+           return true;
+          } else {
+           return false;
+          }
+        }
+
         function updateMoney() {
           var result = confirm("Хотите обновить счёт клиента?");
           if (result) {

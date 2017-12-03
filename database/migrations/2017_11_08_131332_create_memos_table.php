@@ -19,6 +19,9 @@ class CreateMemosTable extends Migration
 
             $table->integer('user_id')->unsigned()->default(1);
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->integer('order_id')->unsigned()->default(1);
+            
             $table->timestamps();
         });
     }

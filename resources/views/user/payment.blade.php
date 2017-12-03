@@ -35,7 +35,7 @@
 							    data-email="{{ Auth::user()->email }}"
 							    data-label="Оплата картой"
 							    data-allow-remember-me="false"
-							    data-panel-label="Оплатить €">
+							    data-panel-label="Оплатить">
 
 							  </script>	
 							  {{ csrf_field() }}						
